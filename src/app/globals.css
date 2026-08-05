@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui;
+  --font-serif: var(--font-serif), Georgia;
+  --font-romantic: var(--font-romantic), cursive;
+
+  --color-romantic-pink: #ff758c;
+  --color-romantic-rose: #ff7eb3;
+  --color-romantic-gold: #ffd700;
+  
+  --animate-heartbeat: heartBeat 1.5s infinite ease-in-out;
+  --animate-heartbeat-fast: heartBeat 0.8s infinite ease-in-out;
+  --animate-flicker: flicker 0.15s infinite alternate;
+  --animate-shake: shake 0.5s ease-in-out;
+  --animate-float-slow: floatSlow 6s infinite ease-in-out alternate;
+}
+
+:root {
+  --vh: 1vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f051d 0%, #290825 50%, #460927 100%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Custom animations */
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1) rotate(-1deg); opacity: 0.9; }
+  100% { transform: translateX(-50%) scale(1.1) rotate(1deg); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(3deg); }
+}
+
+/* Floating Hearts Background styling */
+.heart-particle {
+  position: absolute;
+  bottom: -50px;
+  font-size: 1.5rem;
+  color: rgba(255, 117, 140, 0.25);
+  animation: floatUp 8s linear infinite;
+  text-shadow: 0 0 8px rgba(255, 117, 140, 0.15);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
