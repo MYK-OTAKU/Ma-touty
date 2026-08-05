@@ -101,3 +101,11 @@ export function getPagePhotoUrl(page: Page): string | null {
   if (!photo) return null;
   return getPublicUrl(photo.bucket_name, photo.storage_path);
 }
+
+// --- Helper: get first video URL for a page ---
+export function getPageVideoUrl(page: Page): string | null {
+  if (!page.media) return null;
+  const video = page.media.find((m) => m.type === "video");
+  if (!video) return null;
+  return getPublicUrl(video.bucket_name, video.storage_path);
+}
