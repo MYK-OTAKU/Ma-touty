@@ -84,19 +84,19 @@ function TextPhotoTemplate({ page }: { page: Page }) {
       {page.subtitle && (
         <h3 className="font-serif italic text-sm sm:text-base text-white/80">{page.subtitle}</h3>
       )}
-      {/* Polaroid — compact size to avoid vertical scrolling on mobile */}
+      {/* Polaroid — spacious & beautifully proportioned */}
       <motion.div
         initial={{ rotate: -3, scale: 0.9, opacity: 0 }}
         animate={{ rotate: -3, scale: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="bg-white p-2.5 pb-4 rounded-lg shadow-xl w-full max-w-[210px] sm:max-w-[240px] md:max-w-[260px] transform hover:scale-105 hover:rotate-0 transition-transform duration-300"
+        className="bg-white p-3 pb-5 rounded-xl shadow-2xl w-full max-w-[250px] sm:max-w-[280px] md:max-w-[310px] transform hover:scale-105 hover:rotate-0 transition-transform duration-300"
       >
         <div
-          className="w-full h-[155px] sm:h-[180px] md:h-[200px] bg-cover bg-center rounded-sm border border-slate-100"
+          className="w-full h-[190px] sm:h-[220px] md:h-[250px] bg-cover bg-center rounded-md border border-slate-100"
           style={{ backgroundImage: `url('${photoUrl || fallbackBg}')` }}
         />
         {page.polaroid_caption && (
-          <div className="font-romantic text-xl md:text-2xl text-slate-800 mt-2 text-center truncate">
+          <div className="font-romantic text-2xl md:text-3xl text-slate-800 mt-2.5 text-center truncate">
             {page.polaroid_caption}
           </div>
         )}
@@ -243,7 +243,7 @@ export default function StoryScreen({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="w-full max-h-[70vh] overflow-y-auto no-scrollbar rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-6 md:p-10 shadow-2xl flex flex-col justify-center items-center text-center"
+              className="w-full max-h-[83vh] overflow-y-auto no-scrollbar rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-5 sm:p-7 md:p-9 shadow-2xl flex flex-col justify-center items-center text-center"
             >
               {renderTemplate(page)}
             </motion.div>
