@@ -75,34 +75,34 @@ function TextPhotoTemplate({ page }: { page: Page }) {
     "data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23ffe3e8%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%228%22 fill=%22%23ff758c%22>Photo ici</text></svg>";
 
   return (
-    <div className="flex flex-col items-center text-center w-full gap-4">
+    <div className="flex flex-col items-center text-center w-full gap-2.5 sm:gap-3">
       {page.title && (
-        <h2 className="font-romantic text-4xl md:text-5xl text-romantic-pink drop-shadow-md leading-tight">
+        <h2 className="font-romantic text-3xl sm:text-4xl md:text-5xl text-romantic-pink drop-shadow-md leading-tight">
           {page.title}
         </h2>
       )}
       {page.subtitle && (
-        <h3 className="font-serif italic text-lg md:text-xl text-white/80">{page.subtitle}</h3>
+        <h3 className="font-serif italic text-sm sm:text-base text-white/80">{page.subtitle}</h3>
       )}
-      {/* Polaroid — animate once, no loop */}
+      {/* Polaroid — compact size to avoid vertical scrolling on mobile */}
       <motion.div
         initial={{ rotate: -3, scale: 0.9, opacity: 0 }}
         animate={{ rotate: -3, scale: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="bg-white p-3.5 pb-6 rounded-lg shadow-2xl w-full max-w-[270px] sm:max-w-[310px] md:max-w-[350px] transform hover:scale-105 hover:rotate-0 transition-transform duration-300"
+        className="bg-white p-2.5 pb-4 rounded-lg shadow-xl w-full max-w-[210px] sm:max-w-[240px] md:max-w-[260px] transform hover:scale-105 hover:rotate-0 transition-transform duration-300"
       >
         <div
-          className="w-full aspect-square bg-cover bg-center rounded-sm border border-slate-100"
+          className="w-full h-[155px] sm:h-[180px] md:h-[200px] bg-cover bg-center rounded-sm border border-slate-100"
           style={{ backgroundImage: `url('${photoUrl || fallbackBg}')` }}
         />
         {page.polaroid_caption && (
-          <div className="font-romantic text-2xl md:text-3xl text-slate-800 mt-3 text-center">
+          <div className="font-romantic text-xl md:text-2xl text-slate-800 mt-2 text-center truncate">
             {page.polaroid_caption}
           </div>
         )}
       </motion.div>
       {page.body && (
-        <p className="text-base md:text-lg font-serif font-light leading-relaxed text-white/90">
+        <p className="text-sm sm:text-base font-serif font-light leading-relaxed text-white/90 max-w-sm">
           {page.typing_effect ? <TypingText text={page.body} delay={0.4} /> : page.body}
         </p>
       )}
