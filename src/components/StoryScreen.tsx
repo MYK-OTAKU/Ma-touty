@@ -248,9 +248,9 @@ export default function StoryScreen({
   const page = pages[currentSlide];
 
   return (
-    <div className="w-full h-full flex flex-col justify-between items-center px-3 md:px-6 py-2 md:py-4 z-10">
+    <div className="w-full h-[100dvh] max-h-[100dvh] flex flex-col justify-between items-center px-3 md:px-6 py-3 z-20 overflow-hidden box-border">
       {/* Progress Bar */}
-      <div className="w-full max-w-xl bg-white/10 h-1 rounded-full overflow-hidden mb-3">
+      <div className="w-full max-w-xl bg-white/10 h-1.5 rounded-full overflow-hidden shrink-0 mb-2">
         <motion.div
           initial={{ width: 0 }}
           animate={{
@@ -261,8 +261,8 @@ export default function StoryScreen({
         />
       </div>
 
-      {/* Slide Card */}
-      <div className="flex-1 w-full max-w-xl md:max-w-2xl lg:max-w-3xl flex justify-center items-center">
+      {/* Slide Card Container — flex-1 min-h-0 ensures it scales to leave room for nav bar */}
+      <div className="flex-1 min-h-0 w-full max-w-xl md:max-w-2xl lg:max-w-3xl flex justify-center items-center my-1">
         {loading ? (
           <div className="flex flex-col items-center gap-3 text-white/50">
             <Heart className="w-10 h-10 text-romantic-pink fill-current animate-pulse" />
@@ -276,7 +276,7 @@ export default function StoryScreen({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="w-full max-h-[79vh] overflow-y-auto rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-4 sm:p-6 md:p-8 shadow-2xl flex flex-col items-center text-center my-auto"
+              className="w-full max-h-full overflow-y-auto rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl p-4 sm:p-6 md:p-8 shadow-2xl flex flex-col items-center text-center my-auto"
             >
               {renderTemplate(page)}
             </motion.div>
@@ -284,8 +284,8 @@ export default function StoryScreen({
         ) : null}
       </div>
 
-      {/* Navigation — High visibility floating bar */}
-      <div className="w-full max-w-xl md:max-w-2xl flex justify-between items-center mt-3 z-30 bg-slate-950/80 backdrop-blur-xl border border-white/15 px-4 py-2.5 rounded-full shadow-2xl">
+      {/* Navigation Bar — shrink-0 ensures it NEVER gets pushed off screen */}
+      <div className="w-full max-w-xl md:max-w-2xl flex justify-between items-center shrink-0 mt-2 z-40 bg-slate-950/90 backdrop-blur-2xl border border-white/20 px-4 py-2.5 rounded-full shadow-2xl">
         <button
           onClick={handlePrev}
           disabled={currentSlide === 0}
